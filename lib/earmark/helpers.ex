@@ -40,7 +40,6 @@ defmodule Earmark.Helpers do
   """
 
   def escape(html, encode \\ false)
-
   def escape(html, false), do: _escape(Regex.replace(~r{&(?!#?\w+;)}, html, "&amp;"))
   def escape(html, _), do: _escape(String.replace(html, "&", "&amp;"))
 

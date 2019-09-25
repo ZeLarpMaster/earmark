@@ -76,9 +76,14 @@ defmodule Functional.Parser.HtmlParserTest do
     end
 
     test "some noise" do
-      input = "  </span>rubbish"
+      input = "  </span> garbage"
 
-      assert parse_html(input) == {"span"}
+      assert parse_html(input) == [{"span"}, "garbage"]
+    end
+  end
+
+  describe "closing tags and garbage" do
+    test "shall not be descarded" do
     end
   end
 end

@@ -6,7 +6,8 @@ defmodule Earmark.Ast.Renderer.HtmlRenderer do
 
   # Structural Renderer for html blocks
   def render_html_block(html_lines) do
-    case Enum.map(html_lines, &parse_html/1) do
+    IO.inspect {2000, html_lines}
+    case Enum.flat_map(html_lines, &parse_html/1) |> IO.inspect do
       [] -> []
       [{tag, atts}|rest] -> _render_html_block(rest, [{tag, atts, []}])
       _                  -> raise "Internal Error, must not call render_html_block/1 without a leading HTML Tag"
@@ -14,9 +15,11 @@ defmodule Earmark.Ast.Renderer.HtmlRenderer do
   end
 
   def render_html_oneline([line|_]) do
-    case parse_html(line, false) do
-      {tag, atts}   -> {tag, atts, []} 
-      original      -> original
+    IO.inspect {3000, line}
+    case parse_html(line) |> IO.inspect do
+      [{tag, atts}, garbage] -> [{tag, atts, []}, garbage]
+      {tag, atts}            -> {tag, atts, []}
+      original               -> original
     end
   end
   
@@ -36,6 +39,7 @@ defmodule Earmark.Ast.Renderer.HtmlRenderer do
     _render_html_block(rest, [{tag, atts, []}|open])
   end
   defp _render_html_block([{tag}|_rest], [{tag, atts, content}]) do 
+    IO.inspect {2500, content}
     {tag, atts, Enum.reverse(content)}
   end
   defp _render_html_block([{tag}|rest], [{tag, _, _}|_]=open) do

@@ -92,7 +92,8 @@ defmodule Acceptance.Html1.Html1BlocksTest do
       markdown = "alpha\n<hr />beta"
       html     = construct([
         {:p, nil, "alpha"},
-        :hr
+        :hr,
+        "beta"
       ])
       messages = []
 
@@ -111,7 +112,8 @@ defmodule Acceptance.Html1.Html1BlocksTest do
       markdown = "alpha\n<div/>beta"
       html     = construct([
         {:p, nil, "alpha"},
-        "<div></div>"
+        "<div></div>",
+        "beta"
       ])
       messages = []
 
@@ -122,7 +124,8 @@ defmodule Acceptance.Html1.Html1BlocksTest do
       markdown = "alpha\n<div class=\"first\"/>beta"
       html     = construct([
         {:p, nil, "alpha"},
-        "<div class=\"first\"></div>"
+        "<div class=\"first\"></div>",
+        "beta"
       ])
       messages = []
 
@@ -134,6 +137,7 @@ defmodule Acceptance.Html1.Html1BlocksTest do
       html     = construct([
         {:p, nil, "alpha"},
         "<div class=\"first\"></div>",
+        "beta",
         :p, "gamma" ])
       messages = []
 
@@ -160,7 +164,8 @@ defmodule Acceptance.Html1.Html1BlocksTest do
       markdown = "alpha\n<div></div>beta"
       html     = construct([
         {:p, nil, "alpha"},
-        "<div></div>"
+        "<div></div>",
+        "beta"
       ])
       messages = []
 
