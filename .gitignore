@@ -15,3 +15,5 @@ src/*.erl
 cover
 lib/tools
 #*#
+
+.elixir_ls

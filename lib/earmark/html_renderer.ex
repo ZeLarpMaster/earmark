@@ -273,7 +273,7 @@ defmodule Earmark.HtmlRenderer do
   end
 
   def render_code(%Block.Code{lines: lines}) do
-    lines |> Enum.join("\n") |> escape(true)
+    lines |> Enum.join("\n") |> escape(false)
   end
 
   defp code_classes(language, prefix) do
